@@ -1,0 +1,31 @@
+# Docker-Compose document
+# Ref : https://docs.docker.com/compose/compose-file/
+
+version: "3"
+services:
+  web:
+    build: ./website
+    image: website:${TAG}
+    container_name: web_service_${TAG}
+    depends_on:
+      - alg
+    ports:
+      - "8080:80"
+    volumes:
+      - ../cache/website/:/repo/node_modules/
+      - ../src/website/:/repo/
+    networks:
+      - service_network
+
+  alg:
+    build: ./algorithm
+    image: algorithm:${TAG}
+    container_name: alg_service_${TAG}
+    volumes:
+      - ../src/algorithm/:/repo/
+    networks:
+      - service_network
+
+networks:
+  service_network:
+    driver: bridge
