@@ -22,13 +22,16 @@ require("./server_event_handle")(server);
 // Start server
 app.prepare().then(() => {
 
-    var usersRouter = require('./routes/users');
-    server.use('/api/users', usersRouter);
+    // Setting router
+    var algRouter = require('./routes/alg');
+    server.use('/api/alg', algRouter);
 
+    // Setting all router coommon action.
     server.all('*', (req, res) => {
         return handle(req, res);
     });
 
+    // Start server with listen port 
     server.listen(port, err => {
         if (err) throw err;
         console.log(`> Ready on http://localhost:${port}`);
