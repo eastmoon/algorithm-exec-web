@@ -139,6 +139,9 @@ goto end
     IF NOT EXIST cache\website (
         mkdir cache\website
     )
+    IF NOT EXIST cache\log (
+        mkdir cache\log
+    )
 
     echo ^> Upgrade Website library
     docker run -ti --rm^

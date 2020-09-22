@@ -4,7 +4,7 @@ const express = require('express');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flag: 'a' });
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log', 'access.log'), { flag: 'a' });
 
 module.exports = function(server) {
 

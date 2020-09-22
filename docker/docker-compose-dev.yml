@@ -13,6 +13,7 @@ services:
       - "8080:80"
     volumes:
       - ../cache/website/:/repo/node_modules/
+      - ../cache/log/:/repo/app/log/
       - ../src/website/:/repo/
     networks:
       - service_network
