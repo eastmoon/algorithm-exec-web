@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "node application demo code",
   "scripts": {
-    "development": "nodemon --watch app --ext 'html js jsx css sass scss json' --ignore node_modules --ignore .next -L --exec CHOKIDAR_USEPOLLING=true node app/server.js",
+    "dev": "nodemon --watch app --ext 'html js jsx css sass scss json' --ignore node_modules --ignore .next -L --exec CHOKIDAR_USEPOLLING=true node app/server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node app/server.js"
   },
