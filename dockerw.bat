@@ -47,6 +47,8 @@ for %%a in ("%cd%") do (
     set PROJECT_NAME=%%~na
 )
 set PROJECT_ENV=dev
+set PROJECT_SSH_USER=somesshuser
+set PROJECT_SSH_PASS=somesshpass
 
 :: ------------------- execute script -------------------
 
@@ -133,7 +135,11 @@ goto end
 
 :cli-start-website-prepare (
     echo ^> Build Website image
-    docker build --rm -t website:%PROJECT_NAME% ./docker/website
+    docker build --rm^
+        --build-arg SSH_USER=%PROJECT_SSH_PASS%^
+        --build-arg SSH_PASS=%PROJECT_SSH_PASS%^
+        -t website:%PROJECT_NAME%^
+        ./docker/website
 
     echo ^> Create Website tmp directory
     IF NOT EXIST cache\website (
@@ -155,7 +161,11 @@ goto end
 :cli-start-algorithm-prepare (
     echo ^> Build Algorithm image
     copy src\algorithm\.dependencies docker\algorithm
-    docker build --rm -t algorithm:%PROJECT_NAME% ./docker/algorithm
+    docker build --rm^
+        --build-arg SSH_USER=%PROJECT_SSH_PASS%^
+        --build-arg SSH_PASS=%PROJECT_SSH_PASS%^
+        -t algorithm:%PROJECT_NAME%^
+        ./docker/algorithm
     del docker\algorithm\.dependencies
 
     goto end
