@@ -21,4 +21,22 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.put('/', function(req, res, next) {
+    // Retrieve parame from req object
+    const { params, body } = req;
+    console.log(params);
+    console.log(body);
+    res.send(`PUT request into algorithm.`);
+});
+
+router.post('/', function(req, res, next) {
+    console.log(req.body);
+    res.send(`POST request into algorithm.`);
+});
+
+router.delete('/', function(req, res, next) {
+    console.log(req.body);
+    res.send(`DELETE request into algorithm.`);
+});
+
 module.exports = router;
