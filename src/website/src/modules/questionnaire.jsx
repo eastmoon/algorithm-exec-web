@@ -1,5 +1,6 @@
 // JavaScript framework
 import React, { useState } from 'react';
+import Axios from "axios";
 
 // Style framework
 import Form from 'react-bootstrap/Form';
@@ -16,12 +17,18 @@ function Questionnaire() {
     const handleSubmit = (event) => {
         // Retrieve form data.
         const form = event.currentTarget;
-        console.log(form.formBasicEmail.value);
-        console.log(form.formBasicPassword.value);
-        console.log(form.formBasicCheckbox.checked);
         // Stop default action and reload page.
         event.preventDefault();
         event.stopPropagation();
+        const data = {
+            uid: "12345678",
+            channel: form.formBasicEmail.value,
+            tag: form.formBasicPassword.value,
+            content: form.formBasicCheckbox.checked
+        }
+        Axios.put(`/api/alg/`, data).then(( response ) => {
+            console.log(response);
+        });
     };
 
     return <div style={box}>
