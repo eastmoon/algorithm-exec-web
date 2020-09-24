@@ -8,9 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Modules
-import Logo from 'modules/logo';
-
-//import Questionnaire from "modules/questionnaire";
 const Questionnaire = dynamic(() => import('modules/questionnaire'), {
   ssr: false
 });
