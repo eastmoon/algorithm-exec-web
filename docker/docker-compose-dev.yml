@@ -9,6 +9,7 @@ services:
     volumes:
       - ../cache/website/:/repo/node_modules/
       - ../cache/log/:/repo/app/log/
+      - ../cache/sharedFolder/:/repo/app/sf/
       - ../src/website/:/repo/
     networks:
       - service_network
@@ -21,6 +22,7 @@ services:
     image: algorithm:${TAG}
     container_name: alg_service_${TAG}
     volumes:
+      - ../cache/sharedFolder/:/repo/sf/
       - ../src/algorithm/:/repo/
     networks:
       - service_network
