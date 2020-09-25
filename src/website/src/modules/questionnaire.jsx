@@ -22,11 +22,10 @@ function Questionnaire() {
         event.preventDefault();
         event.stopPropagation();
         console.log(Moment.current());
-        console.log(Moment.timestamp());
         const data = {
-            uid: "12345678",
-            channel: form.formBasicEmail.value,
-            tag: form.formBasicPassword.value
+            uid: Moment.timestamp(),
+            email: form.formBasicEmail.value,
+            passwd: form.formBasicPassword.value
         }
         Axios.put(`/api/alg/${form.formBasicRadiobox.value}`, data).then(( response ) => {
             console.log(response);
