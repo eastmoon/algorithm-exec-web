@@ -21,12 +21,20 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.put('/', function(req, res, next) {
+router.put('/:type', function(req, res, next) {
     // Retrieve parame from req object
     const { params, body } = req;
     console.log(params);
     console.log(body);
-    res.send(`PUT request into algorithm.`);
+    if ( params.type === "ssh" ) {
+        res.send(`PUT request into algorithm with SSH.`);
+    }
+    if ( params.type === "ssh-sf" ) {
+        res.send(`PUT request into algorithm with SSH & SharedFolder.`);
+    }
+    if ( params.type === "sf" ) {
+        res.send(`PUT request into algorithm with SharedFolder.`);
+    }
 });
 
 router.post('/', function(req, res, next) {

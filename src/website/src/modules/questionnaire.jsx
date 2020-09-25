@@ -23,10 +23,9 @@ function Questionnaire() {
         const data = {
             uid: "12345678",
             channel: form.formBasicEmail.value,
-            tag: form.formBasicPassword.value,
-            content: form.formBasicCheckbox.checked
+            tag: form.formBasicPassword.value
         }
-        Axios.put(`/api/alg/`, data).then(( response ) => {
+        Axios.put(`/api/alg/${form.formBasicRadiobox.value}`, data).then(( response ) => {
             console.log(response);
         });
     };
@@ -45,8 +44,11 @@ function Questionnaire() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
+            <Form.Group controlId="formBasicRadiobox">
+                <Form.Label>Select connection type</Form.Label>
+                <Form.Check type="radio" name="conn-type" value="ssh" label="SSH" />
+                <Form.Check type="radio" name="conn-type" value="ssh-sf" label="SSH & SharedFolder" />
+                <Form.Check type="radio" name="conn-type" value="sf" label="SharedFolder" />
             </Form.Group>
             <Button type="submit">Submit form</Button>
         </Form>
