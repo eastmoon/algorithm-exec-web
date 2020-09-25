@@ -1,3 +1,4 @@
+// Ref : Javascript Date 的健忘筆記, https://blog.scottchayaa.com/post/2019/05/27/javascript_date_memo/
 // 對Date的擴充套件，將 Date 轉化為指定格式的String
 // 月(M)、日(d)、小時(h)、分(m)、秒(s)、季度(q) 可以用 1-2 個佔位符，
 // 年(y)可以用 1-4 個佔位符，毫秒(S)只能用 1 個佔位符(是 1-3 位的數字)
