@@ -13,6 +13,7 @@ nextConfig.env = {
 // Setting webpack config
 nextConfig.webpack = ( config, options ) => {
     config.resolve.modules.push(path.resolve("./src"));
+    config.resolve.modules.push(path.resolve("./common_utils"));
     return config;
 }
 

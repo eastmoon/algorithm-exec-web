@@ -1,6 +1,12 @@
+// Node.js library
+const path = require('path');
 const { exec, spawn } = require("child_process");
 const express = require('express');
 const router = express.Router();
+
+// Utils
+const common_utils = path.join(process.cwd(), "common_utils");
+const moment = require(path.join(common_utils, "moment.js"));
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,16 +14,16 @@ router.get('/', function(req, res, next) {
     exec(`sshpass -p ${process.env.SSH_PASS} ssh -o StrictHostKeyChecking=no ${process.env.SSH_USER}@alg python /repo/main.py`, (error, stdout, stderr) => {
         if (error) {
             // console.log(`error: ${error.message}`);
-            res.send(`error: <br />${error.message}`);
+            res.send(`${moment.current()} > error: <br />${error.message}`);
             return;
         }
         if (stderr) {
             //console.log(`stderr: ${stderr}`);
-            res.send(`stderr: <br />${stderr}`);
+            res.send(`${moment.current()} > stderr: <br />${stderr}`);
             return;
         }
-        console.log(`stdout: ${stdout}`);
-        res.send(`stdout: <br />${stdout}`);
+        console.log(`${moment.current()} > stdout: ${stdout}`);
+        res.send(`${moment.current()} > stdout: <br />${stdout}`);
     });
 });
 
@@ -27,24 +33,24 @@ router.put('/:type', function(req, res, next) {
     console.log(params);
     console.log(body);
     if ( params.type === "ssh" ) {
-        res.send(`PUT request into algorithm with SSH.`);
+        res.send(`${moment.current()} > PUT request into algorithm with SSH.`);
     }
     if ( params.type === "ssh-sf" ) {
-        res.send(`PUT request into algorithm with SSH & SharedFolder.`);
+        res.send(`${moment.current()} > PUT request into algorithm with SSH & SharedFolder.`);
     }
     if ( params.type === "sf" ) {
-        res.send(`PUT request into algorithm with SharedFolder.`);
+        res.send(`${moment.current()} > PUT request into algorithm with SharedFolder.`);
     }
 });
 
 router.post('/', function(req, res, next) {
     console.log(req.body);
-    res.send(`POST request into algorithm.`);
+    res.send(`${moment.current()} > POST request into algorithm.`);
 });
 
 router.delete('/', function(req, res, next) {
     console.log(req.body);
-    res.send(`DELETE request into algorithm.`);
+    res.send(`${moment.current()} > DELETE request into algorithm.`);
 });
 
 module.exports = router;

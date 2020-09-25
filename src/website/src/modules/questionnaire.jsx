@@ -1,6 +1,7 @@
 // JavaScript framework
 import React, { useState } from 'react';
 import Axios from "axios";
+import Moment from "moment";
 
 // Style framework
 import Form from 'react-bootstrap/Form';
@@ -20,6 +21,8 @@ function Questionnaire() {
         // Stop default action and reload page.
         event.preventDefault();
         event.stopPropagation();
+        console.log(Moment.current());
+        console.log(Moment.timestamp());
         const data = {
             uid: "12345678",
             channel: form.formBasicEmail.value,
